@@ -51,6 +51,6 @@ int main(){
     int x;
     DeQueue(Q, x);
     DeQueue(Q, x);
-    PrintQueue(Q);
+    DeQueue(Q, x);
     return 0;
 }
