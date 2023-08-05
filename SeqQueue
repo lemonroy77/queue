@@ -5,36 +5,36 @@ typedef struct{
     int data[Maxsize];
     int front,rear;
 }SeqQueue;
-//³õÊ¼»¯
+//åˆå§‹åŒ–
 void InitQueue(SeqQueue &Q){
     Q.front=Q.rear=0;
 }
-//ÅĞ¶ÏÎª¿Õ
+//åˆ¤æ–­ä¸ºç©º
 bool QueueEmpty(SeqQueue &Q){
     if(Q.front==Q.rear){
         return true;
     }
     return false;
 }
-//Èë¶Ó---Ö»ÄÜÔÚ¶ÓÎ²²åÈë
+//å…¥é˜Ÿ---åªèƒ½åœ¨é˜Ÿå°¾æ’å…¥
 bool EnQueue(SeqQueue &Q,int e){
-    if(Q.rear==Maxsize){//¶ÓÂú
+    if(Q.rear==Maxsize){//é˜Ÿæ»¡
         return false;
     }
     Q.data[Q.rear]=e;
     Q.rear++;
     return true;
 }
-//³ö¶Ó---Ö»ÄÜÔÚ¶ÓÍ·³ö
+//å‡ºé˜Ÿ---åªèƒ½åœ¨é˜Ÿå¤´å‡º
 bool DeQueue(SeqQueue &Q,int &e){
-  if(Q.front==Q.rear){//ÅĞ¿Õ
+  if(Q.front==Q.rear){//åˆ¤ç©º
       return false;
   }
   e=Q.data[Q.front];
   Q.front=Q.front+1;
   return true;
 }
-//¶Á¶ÓÍ·ÔªËØ
+//è¯»é˜Ÿå¤´å…ƒç´ 
 bool GetHead(SeqQueue&Q,int &e){
     if(Q.front==Q.rear){
         return false;
@@ -45,7 +45,7 @@ bool GetHead(SeqQueue&Q,int &e){
 int GetSize(SeqQueue&Q){
     return Q.rear-Q.front;
 }
-//´òÓ¡
+//æ‰“å°
 void PrintList(SeqQueue&S){
     for(int i=S.front;i!=S.rear;i++){
         printf("%d\t",S.data[i]);
@@ -57,33 +57,33 @@ int main(){
     bool b;
     SeqQueue(Q);
     InitQueue(Q);
-    if(QueueEmpty(Q)) printf("¶ÓÁĞÎª¿Õ\n");
+    if(QueueEmpty(Q)) printf("é˜Ÿåˆ—ä¸ºç©º\n");
     EnQueue(Q,1);
-    printf("ÔªËØ1Èë¶Óºó£¬¶ÓÁĞ´óĞ¡:%d\n",GetSize(Q));
+    printf("å…ƒç´ 1å…¥é˜Ÿåï¼Œé˜Ÿåˆ—å¤§å°:%d\n",GetSize(Q));
     EnQueue(Q,3);
-    printf("ÔªËØ3Èë¶Óºó£¬¶ÓÁĞ´óĞ¡:%d\n",GetSize(Q));
+    printf("å…ƒç´ 3å…¥é˜Ÿåï¼Œé˜Ÿåˆ—å¤§å°:%d\n",GetSize(Q));
     EnQueue(Q,5);
-    printf("ÔªËØ5Èë¶Óºó£¬¶ÓÁĞ´óĞ¡:%d\n",GetSize(Q));
+    printf("å…ƒç´ 5å…¥é˜Ÿåï¼Œé˜Ÿåˆ—å¤§å°:%d\n",GetSize(Q));
     EnQueue(Q,7);
-    printf("ÔªËØ7Èë¶Óºó£¬¶ÓÁĞ´óĞ¡:%d\n",GetSize(Q));
+    printf("å…ƒç´ 7å…¥é˜Ÿåï¼Œé˜Ÿåˆ—å¤§å°:%d\n",GetSize(Q));
     EnQueue(Q,9);
-    printf("ÔªËØ9Èë¶Óºó£¬¶ÓÁĞ´óĞ¡:%d\n",GetSize(Q));
+    printf("å…ƒç´ 9å…¥é˜Ÿåï¼Œé˜Ÿåˆ—å¤§å°:%d\n",GetSize(Q));
     PrintList(Q);
     b=EnQueue(Q,10);
-    if(!b)printf("¶ÓÁĞÒÑÂú£¬²åÈë10Ê§°Ü");
+    if(!b)printf("é˜Ÿåˆ—å·²æ»¡ï¼Œæ’å…¥10å¤±è´¥");
     DeQueue(Q,e);
-    printf("¶ÓÍ·ÔªËØ%d³ö¶Ó\n",e);
+    printf("é˜Ÿå¤´å…ƒç´ %då‡ºé˜Ÿ\n",e);
     b=EnQueue(Q,10);
     if(!b){
-        printf("¶ÓÁĞÒÑÂú£¬²åÈë10Ê§°Ü£¡¶ÓÁĞ´óĞ¡£º%d\n",GetSize(Q));
-        printf("-----ËµÃ÷¶ÓÁĞ¼ÙÒç³ö-----\n");
+        printf("é˜Ÿåˆ—å·²æ»¡ï¼Œæ’å…¥10å¤±è´¥ï¼é˜Ÿåˆ—å¤§å°ï¼š%d\n",GetSize(Q));
+        printf("-----è¯´æ˜é˜Ÿåˆ—å‡æº¢å‡º-----\n");
         PrintList(Q);
     }
     DeQueue(Q,e);
     DeQueue(Q,e);
     DeQueue(Q,e);
     if(QueueEmpty(Q)){
-        printf("ËùÓĞÔªËØ³ö¶Ó£¬¶ÓÁĞÎª¿Õ");
+        printf("æ‰€æœ‰å…ƒç´ å‡ºé˜Ÿï¼Œé˜Ÿåˆ—ä¸ºç©º");
     }
     PrintList(Q);
     return 0;
