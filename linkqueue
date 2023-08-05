@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MaxSize 5
+typedef int ElemType;
+typedef struct LinkNode {
+    ElemType data;
+    struct LinkNode* next;
+} LinkNode;
+typedef struct {
+    LinkNode* front, * rear;
+} LinkQueue;
+void InitQueue(LinkQueue& Q) {
+    Q.front = Q.rear = NULL;}
+void EnQueue(LinkQueue& Q, ElemType x) {
+    LinkNode* s = (LinkNode*)malloc(sizeof(LinkNode));
+    s->data = x;
+    s->next = NULL;
+
+    if (Q.front == NULL) {  // 队列为空的特殊处理
+        Q.front = s;
+        Q.rear = s;
+    }
+    else {
+        Q.rear->next = s;
+        Q.rear = s;
+    }
+}
+bool DeQueue(LinkQueue& Q, ElemType& x) {
+    if (Q.front == NULL) return false;  // 队列为空
+    LinkNode* p = Q.front;
+    x = p->data;
+    Q.front = p->next;
+    free(p);
+    if (Q.front == NULL) Q.rear = NULL;  // 队列中只有一个节点的特殊处理
+    return true;}
+int main() {
+    LinkQueue Q;
+    InitQueue(Q);
+    EnQueue(Q, 1);
+    EnQueue(Q, 2);
+    EnQueue(Q, 3);
+    int x;
+    DeQueue(Q, x);
+    DeQueue(Q, x);
+    DeQueue(Q, x);
+    return 0;
+}
